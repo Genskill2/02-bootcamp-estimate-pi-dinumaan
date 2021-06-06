@@ -1,6 +1,30 @@
 import math
 import unittest
+import random
+from math import sqrt
+def monte_carlo(n):
+    #I define a variable to store the number of points inside the circle
+    circle = 0
 
+    #loop to calculate the points we need for our estimation
+    for i in range(1,n+1):
+        x = random.random()
+        y = random.random()
+        
+        #Checking to see if the produced number falls into the circle
+        if sqrt(x**2 + y**2) <= 1:
+            circle += 1
+
+    #I calculate Pi for this iteration
+    Pi = 4 * (circle/n)
+
+    #returning the result
+    return Pi
+def wallis(itr):
+    res = 1;
+    for i  in range(1,itr):
+        res*=(4*i*i/(4*i*i - 1));
+    return 2*res;
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
         for i in range(0, 5):
